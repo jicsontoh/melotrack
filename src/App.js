@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
+import HomePage from "./pages/HomePage";
+import AuthPage from "./pages/AuthPage";
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -20,7 +22,8 @@ const App = () => {
   } else {
     routes = (
       <React.Fragment>
-        {/* <Route path="/" element={<Users />} /> */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/auth" element={<AuthPage />} />
         <Route path="*" element={<Navigate replace to="/auth" />} />
       </React.Fragment>
     );

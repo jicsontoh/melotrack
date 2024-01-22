@@ -4,13 +4,18 @@
   box-sizing: border-box;
 }
 
+:root{
+  --primary-color: #ffcfda;
+  --secondary-color: #ed738f;
+}
+
 html {
   font-family: 'Open Sans', sans-serif;
 }
 
 body {
   margin: 0;
-  background: #ffcfda;
+  background: var(--primary-color);
 }
 
 .slide-in-left-enter {
