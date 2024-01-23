@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import ErrorModal from "../shared/UIElements/ErrorModal";
 
 import { AuthContext } from "../shared/context/auth-context";
-// import { useHttpClient } from "../shared/hooks/http-hook";
+import { useHttpClient } from "../shared/hooks/http-hook";
 
 import melo from "../assets/melo3.png";
 
@@ -14,39 +14,43 @@ import "./AuthPage.css";
 const AuthPage = (props) => {
   const history = useNavigate();
   const auth = useContext(AuthContext);
-  // const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   password: "",
-  // });
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
 
-  // const onChange = (e) =>
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // const { username, password } = formData;
+  const { username, password } = formData;
 
-  // const authSubmitHandler = async (event) => {
-  //   event.preventDefault();
+  const authSubmitHandler = async (event) => {
+    event.preventDefault();
 
-  //   if (props.action === "Log in") {
-  //     try {
-  //       const responseData = await sendRequest(
-  //         process.env.REACT_APP_API_URL + "/api/admin/login",
-  //         "POST",
-  //         JSON.stringify({
-  //           username: username.trim(),
-  //           password: password,
-  //         }),
-  //         {
-  //           "Content-Type": "application/json",
-  //         }
-  //       );
-  //       auth.login(responseData.user.username, responseData.token);
-  //       history("/");
-  //     } catch (err) {}
-  //   }
-  // };
+    try {
+      if (username === "hello" && password === "hello") {
+        alert("Log in successful");
+        auth.login(username, password);
+        history("/");
+      } else {
+        alert("wrong password");
+      }
+      // const responseData = await sendRequest(
+      //   process.env.REACT_APP_API_URL + "/api/admin/login",
+      //   "POST",
+      //   JSON.stringify({
+      //     username: username.trim(),
+      //     password: password,
+      //   }),
+      //   {
+      //     "Content-Type": "application/json",
+      //   }
+      // );
+      // auth.login(responseData.user.username, responseData.token);
+    } catch (err) {}
+  };
 
   return (
     <React.Fragment>
@@ -55,15 +59,15 @@ const AuthPage = (props) => {
       <div className="auth-page">
         <div className="form-container">
           <img src={melo} height={150} width={150} />
-          <form className="login-form" onSubmit={null}>
+          <form className="login-form" onSubmit={authSubmitHandler}>
             <div className="form-row">
               <label className="form-label">Username</label>
               <input
                 className="form-input"
                 type="text"
                 name="username"
-                // value={username}
-                // onChange={(e) => onChange(e)}
+                value={username}
+                onChange={(e) => onChange(e)}
                 id="username"
                 required
               />
@@ -74,8 +78,8 @@ const AuthPage = (props) => {
                 className="form-input"
                 type="password"
                 name="password"
-                // value={password}
-                // onChange={(e) => onChange(e)}
+                value={password}
+                onChange={(e) => onChange(e)}
                 id="password"
                 required
               />
