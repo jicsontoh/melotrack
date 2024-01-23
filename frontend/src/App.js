@@ -6,6 +6,7 @@ import { useAuth } from "./shared/hooks/auth-hook";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
+import AddRecordPage from "./pages/AddRecordPage";
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -15,6 +16,7 @@ const App = () => {
     routes = (
       <React.Fragment>
         <Route path="/" element={<HomePage />} />
+        <Route path="/records/new" element={<AddRecordPage />} />
         {/* <Route path="/" element={<Users />} /> */}
         <Route path="*" element={<Navigate replace to="/" />} />
       </React.Fragment>
