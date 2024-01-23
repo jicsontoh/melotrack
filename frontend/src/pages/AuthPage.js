@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 // import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
 // import ErrorModal from "../shared/UIElements/ErrorModal";
 
-// import { AuthContext } from "../shared/auth/auth-context";
+import { AuthContext } from "../shared/context/auth-context";
 // import { useHttpClient } from "../shared/hooks/http-hook";
 
 import melo from "../assets/melo3.png";
@@ -12,8 +12,8 @@ import melo from "../assets/melo3.png";
 import "./AuthPage.css";
 
 const AuthPage = (props) => {
-  // const history = useNavigate();
-  // const auth = useContext(AuthContext);
+  const history = useNavigate();
+  const auth = useContext(AuthContext);
   // const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   // const [formData, setFormData] = useState({
